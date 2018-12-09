@@ -15,6 +15,8 @@ public class Cars {
         this.id = id;
     }
 
+    public Cars () {}
+
     public Cars(String company, String model, String color, int price) {
         this.id = -1;
         this.model = model;

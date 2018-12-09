@@ -19,7 +19,7 @@ public interface CarsDAO {
 
     Cars findOne(int id);
 
-    Cars save(Cars car);
+    void save(Cars car);
 
     int delete(int id);
 }

@@ -30,15 +30,13 @@ public class CarsDAOImpl implements CarsDAO {
     }
 
     @Override
-    public Cars save(Cars car) {
+    public void save(Cars car) {
         if (car.getId() == -1) {
-            jdbcTemplate.update("insert into Cars values (?, ?, ?, ?)", car.getCompany(), car.getModel(), car.getColor(), car.getPrice());
+            jdbcTemplate.update("insert into Cars (company, model, color, price) values (?, ?, ?, ?)", car.getCompany(), car.getModel(), car.getColor(), car.getPrice());
         }
         else {
             jdbcTemplate.update("update Cars set company = ?2, model = ?3, color = ?4, price = ?5 where id = ?1", car.getId(), car.getCompany(), car.getModel(), car.getColor(), car.getPrice());
         }
-
-        return findOne(car.getId());
     }
 
     @Override

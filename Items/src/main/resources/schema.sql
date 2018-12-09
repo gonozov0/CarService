@@ -5,7 +5,7 @@ create table cars (
   color varchar(50) NOT NULL,
   price int(10) NOT NULL
 );
-create table stuffs (
+create table stuff (
   id int primary key auto_increment,
   name varchar NOT NULL,
   type varchar not null,

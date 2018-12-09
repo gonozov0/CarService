@@ -1,6 +1,8 @@
-ru\DAO\CarsDAO.class
 ru\Application.class
-ru\Service\CarService.class
+ru\Service\StuffService.class
 ru\DAO\CarsDAOImpl.class
-ru\Model\Cars.class
 ru\Controller\CarController.class
+ru\DAO\StuffDAOImpl.class
+ru\DAO\CarsDAO.class
+ru\Service\CarService.class
+ru\DAO\StuffDAO.class
