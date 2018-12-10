@@ -8,12 +8,12 @@ import ru.Balance;
 import java.util.List;
 
 @Component
-public class BalanceDAOImpl implements BalanceDAO {
+public class CartDAOImpl implements BalanceDAO {
 
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public BalanceDAOImpl(JdbcTemplate jdbcTemplate) {
+    public CartDAOImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

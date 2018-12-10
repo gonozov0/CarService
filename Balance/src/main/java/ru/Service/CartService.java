@@ -3,17 +3,17 @@ package ru.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.Balance;
-import ru.DAO.BalanceDAOImpl;
+import ru.DAO.CartDAOImpl;
 
 import java.util.List;
 
 @Service
-public class BalanceService {
+public class CartService {
 
-    private BalanceDAOImpl balanceDAO;
+    private CartDAOImpl balanceDAO;
 
     @Autowired
-    public BalanceService(BalanceDAOImpl balanceDAO) {
+    public CartService(CartDAOImpl balanceDAO) {
         this.balanceDAO = balanceDAO;
     }
 

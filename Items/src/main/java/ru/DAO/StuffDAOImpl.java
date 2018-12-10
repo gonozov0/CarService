@@ -19,27 +19,27 @@ public class StuffDAOImpl implements StuffDAO {
 
     @Override
     public List<Stuff> findAll() {
-        return jdbcTemplate.query("select * from Stuff", ROW_MAPPER);
+        return jdbcTemplate.query("select * from items where isCar=0", ROW_MAPPER);
     }
 
     @Override
     public Stuff findOne(int id) {
-        Stuff stuff = jdbcTemplate.queryForObject("select * from Stuff where id = ?", new Object[]{id}, ROW_MAPPER);
+        Stuff stuff = jdbcTemplate.queryForObject("select * from items where id = ?", new Object[]{id}, ROW_MAPPER);
         return stuff;
     }
 
     @Override
     public void save(Stuff stuff) {
         if (stuff.getId() == -1) {
-            jdbcTemplate.update("insert into Stuff (name, type, price) values (?, ?, ?)", stuff.getName(), stuff.getType(), stuff.getPrice());
+            jdbcTemplate.update("insert into items (name, type, price) values (?, ?, ?)", stuff.getName(), stuff.getType(), stuff.getPrice());
         }
         else {
-            jdbcTemplate.update("update Stuff set company = ?2, model = ?3, color = ?4, price = ?5 where id = ?1", stuff.getId(), stuff.getName(), stuff.getType(), stuff.getPrice());
+            jdbcTemplate.update("update items set name = ?2, type = ?3, price = ?4 where id = ?1", stuff.getId(), stuff.getName(), stuff.getType(), stuff.getPrice());
         }
     }
 
     @Override
     public int delete(int id) {
-        return jdbcTemplate.update("delete from Stuff where id = ?", id);
+        return jdbcTemplate.update("delete from items where id = ?", id);
     }
 }

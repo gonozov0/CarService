@@ -3,7 +3,7 @@ package ru.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ru.Balance;
+import ru.User;
 import ru.Service.CartService;
 
 import java.util.List;
@@ -12,28 +12,28 @@ import java.util.List;
 public class BalanceController {
 
     @Autowired
-    private CartService balanceService;
+    private CartService cartService;
 
     @RequestMapping(value = "balance", method = RequestMethod.GET)
     @ResponseBody
-    public List<Balance> getBalance()
+    public List<User> getBalance()
     {
-        return balanceService.balance();
+        return cartService.balance();
     }
 
     @RequestMapping(value = "balance/{user_id}", method = RequestMethod.POST)
     @ResponseBody
-    public String updateBalance(@PathVariable int user_id, @RequestBody Balance balance)
+    public String updateBalance(@PathVariable int user_id, @RequestBody User user)
     {
-        balanceService.updateUserBalance(balance.getMoney(), user_id);
+        cartService.updateUserBalance(user.getMoney(), user_id);
         return "ok";
     }
 
     @RequestMapping(value = "balance/{user_id}", method = RequestMethod.PUT)
     @ResponseBody
-    public String putBalance(@PathVariable int user_id, @RequestBody Balance balance)
+    public String putBalance(@PathVariable int user_id, @RequestBody User user)
     {
-        balanceService.updateUserBalance(balance.getMoney(), user_id);
+        cartService.updateUserBalance(user.getMoney(), user_id);
         return "ok";
     }
 }

@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CarService" />
+        <module name="Balance" />
+        <module name="Cart" />
+        <module name="Items" />
         <module name="Root" />
       </profile>
     </annotationProcessing>

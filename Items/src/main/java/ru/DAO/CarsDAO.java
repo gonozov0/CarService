@@ -14,6 +14,9 @@ public interface CarsDAO {
     RowMapper<Cars> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> {
         return new Cars(resultSet.getInt("id"), resultSet.getString("company"), resultSet.getString("model"), resultSet.getString("color"), resultSet.getInt("price"));
     };
+    RowMapper<Integer> KEY_MAPPER = (ResultSet resultSet, int rowNum) -> {
+        return resultSet.getInt("id");
+    };
 
     List<Cars> findAll();
 

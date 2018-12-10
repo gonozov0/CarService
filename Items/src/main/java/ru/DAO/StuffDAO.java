@@ -11,6 +11,9 @@ public interface StuffDAO {
     RowMapper<Stuff> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> {
         return new Stuff(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("type"), resultSet.getInt("price"));
     };
+    RowMapper<Integer> KEY_MAPPER = (ResultSet resultSet, int rowNum) -> {
+        return resultSet.getInt("id");
+    };
 
     List<Stuff> findAll();
 
