@@ -3,17 +3,17 @@ package ru.Service;
 import org.springframework.stereotype.Service;
 import ru.Cars;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.DAO.CarsDAOImpl;
+import ru.DAO.CarDAOImpl;
 
 import java.util.List;
 
 @Service
 public class CarService {
 
-    private CarsDAOImpl carDAO;
+    private CarDAOImpl carDAO;
 
     @Autowired
-    public CarService(CarsDAOImpl carDAO) {
+    public CarService(CarDAOImpl carDAO) {
         this.carDAO = carDAO;
     }
 

@@ -2,7 +2,6 @@ package ru.DAO;
 
 import org.springframework.jdbc.core.RowMapper;
 import ru.CartItem;
-import ru.User;
 
 import java.sql.ResultSet;
 import java.util.List;
@@ -20,7 +19,7 @@ public interface CartDAO {
 
     public void addItem(int user_id, int item_id);
 
-    public void deleteItem(int id);
+    public void deleteItem(int user_id, int item_id);
 
     public void deleteAll(int id);
 

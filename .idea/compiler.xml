@@ -8,8 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Balance" />
         <module name="Cart" />
+        <module name="Eureka" />
+        <module name="identity" />
         <module name="Items" />
-        <module name="Root" />
       </profile>
     </annotationProcessing>
   </component>

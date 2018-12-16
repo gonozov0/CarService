@@ -12,9 +12,13 @@ public interface BalanceDAO {
         return new Balance(resultSet.getInt("user_id"), resultSet.getInt("money"));
     };
 
+    RowMapper<String> MONEY_MAPPER = (ResultSet resultSet, int rowNum) -> {
+        return Double.toString(resultSet.getDouble("money"));
+    };
+
     public List<Balance> getBalance();
 
-    public List<Balance> getBalanceByUserID(int id);
+    public String getBalanceByUserID(int id);
 
     public void updateUserBalance(double newBalance, int id);
 
