@@ -14,13 +14,13 @@ public class StuffController {
     @Autowired
     private StuffService stuffService;
 
-    @RequestMapping(value = "stuff", method = RequestMethod.GET)
+    @RequestMapping(value = "user/stuff", method = RequestMethod.GET)
     @ResponseBody
     public List<Stuff> getStuffs() {
         return stuffService.findAll();
     }
 
-    @RequestMapping(value = "stuff/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "adm/stuff/{id}", method = RequestMethod.POST)
     @ResponseBody
     public String postStuff(@RequestBody Stuff stuff, @PathVariable int id) {
         stuff.setId(id);
@@ -28,7 +28,7 @@ public class StuffController {
         return "ok";
     }
 
-    @RequestMapping(value = "stuff", method = RequestMethod.PUT)
+    @RequestMapping(value = "adm/stuff", method = RequestMethod.PUT)
     @ResponseBody
     public String putStuff(@RequestBody Stuff stuff) {
         stuff.setId(-1);
@@ -36,7 +36,7 @@ public class StuffController {
         return "ok";
     }
 
-    @RequestMapping(value = "stuff/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "adm/stuff/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public String deleteStuff(@PathVariable int id) {
         stuffService.delete(id);

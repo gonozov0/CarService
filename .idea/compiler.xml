@@ -8,10 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Balance" />
         <module name="Cart" />
-        <module name="Eureka" />
+        <module name="ConfigStorage" />
         <module name="identity" />
         <module name="Items" />
+        <module name="Objects" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Eureka" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

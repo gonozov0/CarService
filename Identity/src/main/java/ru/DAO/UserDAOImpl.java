@@ -3,6 +3,7 @@ package ru.DAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.User;
 
 import java.util.List;
 
@@ -15,30 +16,18 @@ public class UserDAOImpl implements UserDAO {
     public UserDAOImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-/*
+
     @Override
-    public List<CartItem> findAll(int user_id) {
-        return jdbcTemplate.query("select item_id, count(id) as count from Carts where user_id=" + user_id + " group by item_id", ROW_MAPPER);
+    public User getUserByLogin(String login) {
+        return userExist(login) ? jdbcTemplate.queryForObject("select * from users where login = ?", new Object[]{login}, ROW_MAPPER) : null;
     }
 
     @Override
-    public void addItem(int user_id, int item_id) {
-        Integer id = jdbcTemplate.query("select id from cart where user_id = " + user_id + " and item_id = " + item_id, KEY_MAPPER).get(0);
-        if (id.toString().isEmpty()) {
-            jdbcTemplate.update("insert into cart (user_id, item_id) values (?, ?)", user_id, item_id);
-        } else {
-            jdbcTemplate.update("update cart set user_id = ?2, item_id = ?3 where id = ?1", id, user_id, item_id);
-        }
+    public void addUser(String login, String password, String role) {
+        jdbcTemplate.update("insert into users (login, password, role) values(?,?,?)", login, password, role);
     }
 
-    @Override
-    public void deleteItem(int id) {
-        jdbcTemplate.execute("delete from Cart where id =" + id);
+    private boolean userExist(String login) {
+        return jdbcTemplate.queryForObject("select count(id) as count from users where login = ?", new Object[]{login}, KEY_MAPPER) > 0;
     }
-
-    @Override
-    public void deleteAll(int id) {
-        jdbcTemplate.execute("delete from Carts");
-    }
-*/
 }

@@ -12,15 +12,11 @@ public interface UserDAO {
         return new User(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("password"), resultSet.getString("role"));
     };
     RowMapper<Integer> KEY_MAPPER = (ResultSet resultSet, int rowNum) -> {
-        return resultSet.getInt("id");
+        return resultSet.getInt("count");
     };
 
-    /*public List<CartItem> findAll(int user_id);
+    public User getUserByLogin(String login);
 
-    public void addItem(int user_id, int item_id);
+    public void addUser(String login, String password, String role);
 
-    public void deleteItem(int id);
-
-    public void deleteAll(int id);
-*/
 }

@@ -6,22 +6,20 @@ import org.springframework.web.bind.annotation.*;
 import ru.Balance;
 import ru.Service.BalanceService;
 
-import java.util.List;
-
 @Controller
 public class BalanceController {
 
     @Autowired
     private BalanceService balanceService;
 
-    @RequestMapping(value = "balance/{user_id}", method = RequestMethod.GET)
+    @RequestMapping(value = "user/balance/{user_id}", method = RequestMethod.GET)
     @ResponseBody
     public String getBalance(@PathVariable int user_id)
     {
         return balanceService.balance(user_id);
     }
 
-    @RequestMapping(value = "balance", method = RequestMethod.POST)
+    @RequestMapping(value = "adm/balance", method = RequestMethod.POST)
     @ResponseBody
     public String updateBalance(@RequestBody Balance balance)
     {
@@ -29,7 +27,7 @@ public class BalanceController {
         return "ok";
     }
 
-    @RequestMapping(value = "balance", method = RequestMethod.PUT)
+    @RequestMapping(value = "adm/balance", method = RequestMethod.PUT)
     @ResponseBody
     public String putBalance(@RequestBody Balance balance)
     {

@@ -1,11 +1,15 @@
 package ru.Controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.CartItem;
 import ru.Service.CartService;
+import ru.Token;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -14,32 +18,41 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @RequestMapping(value = "cart/{user_id}", method = RequestMethod.GET)
+    @RequestMapping(value = "user/cart", method = RequestMethod.GET)
     @ResponseBody
-    public List<CartItem> getItems(@PathVariable int user_id)
-    {
-        return cartService.items(user_id);
+    public List<CartItem> getItems(@RequestHeader HttpHeaders hh) throws IOException {
+        String tokenStr = hh.get("token").get(0);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Token token = objectMapper.readValue(tokenStr, Token.class);
+        return cartService.items(token.getUserID());
     }
 
-    @RequestMapping(value = "cart/{user_id}/{item_id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "user/cart/{item_id}", method = RequestMethod.PUT)
     @ResponseBody
-    public String addItem(@PathVariable int user_id, @PathVariable int item_id)
-    {
-        cartService.addItem(user_id, item_id);
+    public String addItem(@RequestHeader HttpHeaders hh, @PathVariable int item_id) throws IOException {
+        String tokenStr = hh.get("token").get(0);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Token token = objectMapper.readValue(tokenStr, Token.class);
+        cartService.addItem(token.getUserID(), item_id);
         return "ok";
     }
 
-    @RequestMapping(value = "cart/{user_id}/{item_id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "user/cart/{item_id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public String deleteItem(@PathVariable int user_id, @PathVariable int item_id)
-    {
-        cartService.deleteItem(user_id, item_id);
+    public String deleteItem(@RequestHeader HttpHeaders hh, @PathVariable int item_id) throws IOException {
+        String tokenStr = hh.get("token").get(0);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Token token = objectMapper.readValue(tokenStr, Token.class);
+        cartService.deleteItem(token.getUserID(), item_id);
         return "ok";
     }
 
-    @RequestMapping(value = "cart/buy/{user_id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "user/cart/buy", method = RequestMethod.DELETE)
     @ResponseBody
-    public String buy(@PathVariable int user_id) {
-        return cartService.buy(user_id);
+    public String buy(@RequestHeader HttpHeaders hh) throws IOException {
+        String tokenStr = hh.get("token").get(0);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Token token = objectMapper.readValue(tokenStr, Token.class);
+        return cartService.buy(token.getUserID());
     }
 }

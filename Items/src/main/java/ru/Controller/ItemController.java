@@ -17,13 +17,13 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
-    @RequestMapping(value = "items/cost", method = RequestMethod.POST)
+    @RequestMapping(value = "user/items/cost", method = RequestMethod.POST)
     @ResponseBody
     public String getCostByItemsID(@RequestBody RequestObject IDs) {
         return itemService.getCostByItemsID(IDs.getString());
     }
 
-    @RequestMapping(value = "items/price", method = RequestMethod.POST)
+    @RequestMapping(value = "user/items/price", method = RequestMethod.POST)
     @ResponseBody
     public RequestObject getPricesByItemsID(@RequestBody RequestObject IDs) {
         return new RequestObject(itemService.getPricesByItemsID(IDs.getString()));

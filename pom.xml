@@ -14,7 +14,8 @@
         <module>Items</module>
         <module>Cart</module>
         <module>Identity</module>
-        <module>Eureka</module>
+        <module>ConfigStorage</module>
+        <module>Objects</module>
     </modules>
 
     <build>

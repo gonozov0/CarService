@@ -34,7 +34,7 @@
         </dependency>
         <dependency>
             <groupId>CarService</groupId>
-            <artifactId>Balance</artifactId>
+            <artifactId>Objects</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
