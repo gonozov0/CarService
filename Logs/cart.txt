@@ -1,0 +1,22 @@
+
+
+ Sun Jan 27 23:07:48 MSK 2019 Request had came	info: 1, user
+
+ Sun Jan 27 23:07:48 MSK 2019 Request had came	info: 1, user
+ Request to url: http://localhost:8081/user/items/price	getting list of items in cart for user: 1
+
+ Sun Jan 27 23:08:06 MSK 2019 Request had came	info: 1, user
+
+ Sun Jan 27 23:08:06 MSK 2019 Request had came	info: 1, user	deleting item: 5 in cart for user: 1
+
+ Sun Jan 27 23:08:13 MSK 2019 Request had came	info: 1, user
+
+ Sun Jan 27 23:08:13 MSK 2019 Request had came	info: 1, user	deleting item: 4 in cart for user: 1
+
+ Sun Jan 27 23:08:16 MSK 2019 Request had came	info: 1, user
+
+ Sun Jan 27 23:08:16 MSK 2019 Request had came	info: 1, user
+ Request to url: http://localhost:8081/user/items/price
+ Request to url: http://localhost:8083/user/balance/1
+ Request to url: http://localhost:8083/adm/balance/
+ For user: 1 purchase was made

@@ -35,4 +35,8 @@ public class Token {
     public void setSignature(String signature) {
         this.signature = signature;
     }
+
+    public String info() {
+        return Integer.toString(userID) + ", " + role;
+    }
 }

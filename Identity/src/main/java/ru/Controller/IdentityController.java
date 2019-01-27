@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.Logger;
 import ru.Service.IdentityService;
 import ru.Token;
 import ru.User;
@@ -19,7 +20,11 @@ public class IdentityController {
     @RequestMapping(value = "sign/in", method = RequestMethod.POST)
     @ResponseBody
     public Token getToken(@RequestBody User user) throws Exception {
-        return identityService.getToken(user.getLogin(), user.getPassword());
+        Token token = identityService.getToken(user.getLogin(), user.getPassword());
+
+        Logger.write("Token: " + token.info() + " was given");
+
+        return token;
     }
 
     @RequestMapping(value = "sign/up", method = RequestMethod.POST)

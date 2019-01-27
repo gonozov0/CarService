@@ -2,12 +2,15 @@ package ru.Filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.tomcat.jni.Time;
+import ru.Logger;
 import ru.Token;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Date;
 
 @WebFilter(urlPatterns = "/adm/*")
 public class BalanceAdminFilter implements Filter {
@@ -23,9 +26,14 @@ public class BalanceAdminFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest)servletRequest;
         String tokenStr = ((HttpServletRequest)servletRequest).getHeader("token");
 
+        Logger.write("\n\n " + (new Date()).toString() + " Request had came");
+
         if (tokenStr != null) {
             ObjectMapper objectMapper = new ObjectMapper();
             Token token = objectMapper.readValue(tokenStr, Token.class);
+
+            Logger.write("\tinfo: " + token.info());
+
             if (!token.getRole().equals("admin")) {
                 throw new ServletException("Когда подрастешь, тогда и ломись, а пока ты обычный опущенный пользователь!!!");
             }
@@ -37,6 +45,7 @@ public class BalanceAdminFilter implements Filter {
             }
         }
         else {
+            Logger.write("\tinfo: without token");
             throw new ServletException("Токен мне быстро сделал!!!");
         }
     }

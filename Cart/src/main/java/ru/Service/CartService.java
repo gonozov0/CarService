@@ -13,6 +13,7 @@ import ru.*;
 import ru.DAO.CartDAOImpl;
 import org.apache.commons.codec.digest.DigestUtils;
 import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,11 +49,13 @@ public class CartService {
         cartDAO.deleteItem(user_id, item_id);
     }
 
-    public List<CartItem> items(int user_id) {
+    public List<CartItem> items(int user_id) throws IOException {
         List<CartItem> cartItems = cartDAO.findAll(user_id);
         if (cartItems.size() == 0) return null;
         List<String> IDs = cartItems.stream().map(cartItem -> Integer.toString(cartItem.getItem_id())).collect(Collectors.toList());
         RequestObject request = new RequestObject(IDs);
+
+        Logger.write("Request to url: " + config.getItems() + "user/items/price");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Token" , tokenStr);
@@ -68,13 +71,15 @@ public class CartService {
         return cartItems;
     }
 
-    public String buy(int user_id) {
+    public String buy(int user_id) throws IOException {
         List<CartItem> cartItems = items(user_id);
         if (cartItems == null) return "Корзина пуста";
         double items_cost = 0;
         for (CartItem cartItem: cartItems) {
             items_cost += cartItem.getPrice()*cartItem.getCount();
         }
+
+        Logger.write("Request to url: " + config.getBalance()+"user/balance/" + user_id);
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Token" , tokenStr);
@@ -89,14 +94,19 @@ public class CartService {
             for (CartItem cartItem: cartItems) {
                 deleteItem(user_id, cartItem.getItem_id());
             }
+
+            Logger.write("Request to url: " + config.getBalance()+"adm/balance/");
+
             headers = new HttpHeaders();
             headers.set("Token" , tokenStr);
             entity = new HttpEntity(balance, headers);
             restTemplate = new RestTemplate();
             responseEntity = restTemplate.exchange(config.getBalance()+"adm/balance/", HttpMethod.POST, entity, String.class);
+            Logger.write("For user: " + Integer.toString(user_id) + " purchase was made");
             return responseEntity.getBody();
         }
         else {
+            Logger.write("For user: " + Integer.toString(user_id) + " purchase was denied");
             return "Недостаточно сретств";
         }
     }

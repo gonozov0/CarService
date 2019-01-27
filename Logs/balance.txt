@@ -1,0 +1,9 @@
+
+
+ Sun Jan 27 23:06:10 MSK 2019 Request had came	info: 1, user	getting balance for: 1
+
+ Sun Jan 27 23:08:16 MSK 2019 Request had came	info: -1, admin	getting balance for: 1
+
+ Sun Jan 27 23:08:16 MSK 2019 Request had came	info: -1, admin	updating balance for: 1 to: 0.0
+
+ Sun Jan 27 23:08:21 MSK 2019 Request had came	info: 1, user	getting balance for: 1
